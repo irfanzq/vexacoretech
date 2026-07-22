@@ -1,0 +1,20 @@
+@import url('/css/a7de5063f0730cc1.css');
+@import url('/css/c9f98023d01a2e83.css');
+@import url('/css/cfdd918c1572c1a5.css');
+@import url('/css/7ae0eea87da79cf5.css');
+@import url('/css/6a29ec893d8975cf.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  font-family: 'Overpass', sans-serif;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #ff0000;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ff0000;
+}
