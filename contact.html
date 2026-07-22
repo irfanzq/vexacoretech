@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f8fafc"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#0f172a"
+    />
+    <title>Contact — VexaCore Technologies LLC</title>
+    <meta
+      name="description"
+      content="Contact VexaCore Technologies LLC about our products, partnerships, or company inquiries."
+    />
+    <link rel="canonical" href="https://vexacoretech.com/contact.html" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Sans:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">VexaCore</span>
+        <span class="logo-sub">Technologies</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Primary">
+        <a href="index.html#about">About</a>
+        <a href="index.html#products">Products</a>
+        <a href="index.html#focus">What we do</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+        <a class="btn btn-small" href="mailto:mailz4irfi@gmail.com">Email us</a>
+      </div>
+    </header>
+    <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+
+    <main>
+      <section class="contact-page">
+        <div class="contact-intro">
+          <p class="eyebrow">VexaCore Technologies LLC</p>
+          <h1>Contact the company</h1>
+          <p class="lede">
+            Partnerships, product questions, or general company inquiries. For
+            VexaCore.ai services, you can also go directly to
+            <a href="https://vexacore.ai/contact.html" target="_blank" rel="noopener"
+              >vexacore.ai/contact</a
+            >.
+          </p>
+          <div class="contact-chips">
+            <a class="contact-chip" href="mailto:mailz4irfi@gmail.com"
+              >mailz4irfi@gmail.com</a
+            >
+            <a class="contact-chip" href="tel:+18328706646">+1 832 870 6646</a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-fields" id="form-fields">
+            <input
+              type="checkbox"
+              name="botcheck"
+              class="botcheck"
+              tabindex="-1"
+              autocomplete="off"
+            />
+            <label>
+              Name
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label>
+              Company
+              <input
+                type="text"
+                name="company"
+                autocomplete="organization"
+                placeholder="Optional"
+              />
+            </label>
+            <label>
+              Your email
+              <input
+                type="email"
+                name="email"
+                id="client-email"
+                autocomplete="email"
+                required
+                placeholder="name@company.com"
+                inputmode="email"
+              />
+              <span class="field-error" id="email-error" hidden></span>
+            </label>
+            <fieldset>
+              <legend>Inquiry type</legend>
+              <label class="check">
+                <input type="checkbox" name="interest" value="Product / VexaCore.ai" />
+                Product / VexaCore.ai
+              </label>
+              <label class="check">
+                <input type="checkbox" name="interest" value="Partnership" />
+                Partnership
+              </label>
+              <label class="check">
+                <input type="checkbox" name="interest" value="General company inquiry" />
+                General company inquiry
+              </label>
+            </fieldset>
+            <label>
+              Message
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+            <button class="btn" type="submit">Send message</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            <p class="privacy-note">
+              We only use your details to reply. No spam.
+            </p>
+          </div>
+          <div class="form-success" id="form-success" hidden>
+            <p class="form-success-title">Message sent</p>
+            <p class="form-success-text">
+              Thanks — we received your message and will reply soon.
+            </p>
+            <button class="btn" type="button" id="send-another">
+              Send another message
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-brand">VexaCore Technologies LLC</p>
+      <p>
+        <a href="index.html">Home</a>
+        ·
+        <a href="https://vexacore.ai" target="_blank" rel="noopener">vexacore.ai</a>
+      </p>
+      <p class="fine">
+        &copy; 2025 VexaCore Technologies LLC. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
