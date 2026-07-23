@@ -50,3 +50,15 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Register custom domain
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method PUT "repos/${GITHUB_REPOSITORY}/pages" --input - <<'EOF'
+          {
+            "build_type": "workflow",
+            "cname": "vexacoretech.com",
+            "https_enforced": true
+          }
+          EOF
