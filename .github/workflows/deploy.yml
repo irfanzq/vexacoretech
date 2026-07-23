@@ -1,0 +1,56 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Build and sync site to repo root
+        working-directory: app
+        run: npm run build
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: gh-pages
+          cname: vexacoretech.com
+          force_orphan: true
+          exclude_assets: 'app/**,ref/**,.gitignore'
+
+      - name: Ensure Pages serves the gh-pages branch
+        run: |
+          API="https://api.github.com/repos/${{ github.repository }}/pages"
+          AUTH="Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"
+          ACCEPT="Accept: application/vnd.github+json"
+          curl -s -o /dev/null -X POST -H "$AUTH" -H "$ACCEPT" "$API" \
+            -d '{"source":{"branch":"gh-pages","path":"/"}}'
+          curl -sS -f -X PUT -H "$AUTH" -H "$ACCEPT" "$API" \
+            -d '{"source":{"branch":"gh-pages","path":"/"},"cname":"vexacoretech.com"}'
