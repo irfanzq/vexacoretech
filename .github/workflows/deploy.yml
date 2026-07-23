@@ -25,25 +25,26 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: app/package-lock.json
 
       - name: Install dependencies
+        working-directory: app
         run: npm ci
 
-      - name: Build
+      - name: Build and sync site to repo root
+        working-directory: app
         run: npm run build
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: .
           publish_branch: gh-pages
           cname: vexacoretech.com
           force_orphan: true
+          exclude_assets: 'app/**,ref/**,.gitignore'
 
-      # The repo's Pages settings may still point at the main branch (left over
-      # from the old static site). Force the source to gh-pages and restore the
-      # custom domain, creating the Pages site first if it doesn't exist.
       - name: Ensure Pages serves the gh-pages branch
         run: |
           API="https://api.github.com/repos/${{ github.repository }}/pages"
