@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
   group: pages
@@ -39,3 +40,16 @@ jobs:
           publish_branch: gh-pages
           cname: vexacoretech.com
           force_orphan: true
+
+      # The repo's Pages settings may still point at the main branch (left over
+      # from the old static site). Force the source to gh-pages and restore the
+      # custom domain, creating the Pages site first if it doesn't exist.
+      - name: Ensure Pages serves the gh-pages branch
+        run: |
+          API="https://api.github.com/repos/${{ github.repository }}/pages"
+          AUTH="Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"
+          ACCEPT="Accept: application/vnd.github+json"
+          curl -s -o /dev/null -X POST -H "$AUTH" -H "$ACCEPT" "$API" \
+            -d '{"source":{"branch":"gh-pages","path":"/"}}'
+          curl -sS -f -X PUT -H "$AUTH" -H "$ACCEPT" "$API" \
+            -d '{"source":{"branch":"gh-pages","path":"/"},"cname":"vexacoretech.com"}'
